@@ -19,7 +19,7 @@ export default function NonFictionBooks() {
   const [searchValue, setSearchValue] = useState("");
   const [searchValue2, setSearchValue2] = useState("");
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(5);
+  const [limit, setLimit] = useState(3);
   const [filters, setFilters] = useState([searchValue2, page, limit]);
   const limitValues = [3, 6, 10];
 
