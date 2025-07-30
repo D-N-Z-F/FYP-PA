@@ -17,13 +17,19 @@ export default function NonFictionBooks() {
   const [error, setError] = useState(null);
   const [data, setData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const [searchValue2, setSearchValue2] = useState("");
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
-  const [filters, setFilters] = useState([searchValue, page, limit]);
+  const [filters, setFilters] = useState([searchValue2, page, limit]);
   const limitValues = [3, 6, 10];
 
   const onValueChange = (e) => setSearchValue(e.target.value);
-  const onKeyDown = (e) => e.key === "Enter" && setPage(1);
+  const onKeyDown = (e) => {
+    if (e.key === "Enter") {
+      setPage(1);
+      setSearchValue2(searchValue);
+    }
+  };
   const prevPage = () => page > 1 && setPage(page - 1);
   const nextPage = () => data.length && setPage(page + 1);
   const onLimitChange = (e) => {
@@ -45,7 +51,10 @@ export default function NonFictionBooks() {
     }
   };
 
-  useEffect(() => setFilters([searchValue, page, limit]), [page, limit]);
+  useEffect(
+    () => setFilters([searchValue2, page, limit]),
+    [searchValue2, page, limit]
+  );
 
   useEffect(() => {
     setLoading(true);
